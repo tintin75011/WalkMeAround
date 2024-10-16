@@ -3,6 +3,7 @@ venv/
 .VENV/
 env/
 ENV/
+venv
 
 # Ignore les fichiers compilés Python
 __pycache__/
