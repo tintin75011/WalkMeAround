@@ -1,11 +1,13 @@
-import openai
+from openai import OpenAI
 import re
 import os
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
-from NLP.LLM_api_test.maps_path_generator import Maps_path_generator
-# Remplace par ta clé API OpenAI
-openai.api_key = ''
+
+
+
+from maps_path_generator import Maps_path_generator
+
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 my_maps_path_generator = Maps_path_generator() 
 
@@ -17,18 +19,16 @@ def ask_chatgpt(user_lat, user_lon, max_distance_km, available_time_hours):
               f"génère moi un parcours composé d'une liste de lieu à visiter autour de moi. Je veux que ca fasse une boucle. Le parcours total doit faire moins de {max_distance_km}"
               f"et me ramener à mon point de départ. Le temps total ne doit pas dépasser {available_time_hours}, penses à prendre en compte le temps des activités si tu m'en propose(par exemple les musées prennent beaucoup de temps)"
               f"génère moi la liste sous la forme 'nom du lieu','latitude du lieu','longitude du lieu'.Le temps total ne doit pas dépasser {available_time_hours}! c'est important")
- 
+
 
 
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=500,
-            temperature=0.7
-        )
+        response = client.chat.completions.create(model="gpt-4",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=500,
+        temperature=0.7)
 
-        return response['choices'][0]['message']['content'].strip()
+        return response.choices[0].message.content.strip()
     except Exception as e:
         return f"Erreur : {e}"
 
