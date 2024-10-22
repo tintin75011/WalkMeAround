@@ -1,8 +1,7 @@
 ### Prérequis
 
 - Python 3.8+
-- [Hugging Face API](https://huggingface.co/) (pour les LLM)
-- Google Maps API (pour la génération des itinéraires)
+- [OPEN AI API](https://platform.openai.com/docs/overview) (pour les LLM)
 
 ### Étapes d'installation
 
