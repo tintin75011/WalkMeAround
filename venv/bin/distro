@@ -1,4 +1,4 @@
-#!/home/martin-chassard/Documents/code/NLP/walkmearound/venv/bin/python3
+#!/home/martin-chassard/Documents/code/wma/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
